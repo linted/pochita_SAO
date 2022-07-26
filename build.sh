@@ -41,5 +41,5 @@ mkdir -p $WORKDIR/build
 pushd $WORKDIR/build
     cmake -DCMAKE_TOOLCHAIN_FILE=../msp430_toolchain.cmake -DCMAKE_BUILD_TYPE:STRING=$BUILD_TYPE ..
     cmake --build . -j$CPU_COUNT
-    mspdebug tilib "prog ./firmware"
+    mspdebug tilib "prog ./pochita_firmware"
 popd
