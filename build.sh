@@ -24,6 +24,9 @@ if [ $# -eq 1 ]; then
         echo "Cleaning"
         rm -r $WORKDIR/build
         exit 0
+    elif [[ "flash" == ${1,,} ]]; then
+        mspdebug tilib "prog ./pochita_firmware"
+        exit $?
     else
         echo $USAGE
         echo
@@ -41,5 +44,4 @@ mkdir -p $WORKDIR/build
 pushd $WORKDIR/build
     cmake -DCMAKE_TOOLCHAIN_FILE=../msp430_toolchain.cmake -DCMAKE_BUILD_TYPE:STRING=$BUILD_TYPE ..
     cmake --build . -j$CPU_COUNT
-    mspdebug tilib "prog ./pochita_firmware"
 popd
