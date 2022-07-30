@@ -3,7 +3,7 @@
 WORKDIR=$(realpath $(dirname $0))
 CPU_COUNT=$(lscpu | egrep "^CPU\(s\):" | tr -s ' ' | cut -d" " -f2)
 
-USAGE="$0 [release | debug | clean | flash]"
+USAGE="$0 [release | debug | clean | flash | gdb]"
 
 if [ -z $WORKDIR/../msp430-gcc ]; then
   echo $USAGE
@@ -27,6 +27,9 @@ if [ $# -eq 1 ]; then
         exit 0
     elif [[ "flash" == ${1,,} ]]; then
         DO_FLASH=1
+    elif [[ "gdb" == ${1,,} ]]; then
+        mspdebug tilib "gdb"
+        exit $?
     else
         echo $USAGE
         echo
