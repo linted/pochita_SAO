@@ -28,7 +28,7 @@ if [ $# -eq 1 ]; then
     elif [[ "flash" == ${1,,} ]]; then
         DO_FLASH=1
     elif [[ "gdb" == ${1,,} ]]; then
-        mspdebug tilib "gdb"
+        mspdebug tilib 'prog ./build/pochita_firmware' 'gdb'
         exit $?
     else
         echo $USAGE
